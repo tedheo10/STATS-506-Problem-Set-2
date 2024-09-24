@@ -1,4 +1,6 @@
 
+# a. Implementation of dice games
+
 #' Dice Game (Version 1)
 #' 
 #' This version uses a loop to get the result.
@@ -36,7 +38,7 @@ ver1 <- function(n) {
   }
   return(T_winning)
 }
-ver1(10)
+ver1(10) # a game result using a loop
 
 #' Dice Game (Version 2)
 #' 
@@ -64,7 +66,7 @@ ver2 <- function(n) {
   T_winning <- winning - 2*n
   return(T_winning)
 }
-ver2(10)
+ver2(10) # a game result using built-in R vectorized function 
 
 #' Dice Game (Version 3)
 #' 
@@ -93,7 +95,8 @@ ver3 <- function(n) {
   T_winning <- winning - 2*n
   return(T_winning)
     }
-ver3(10)
+ver3(10) # a game result collapsing the dice rolls into a table
+
 
 #' Dice Game (Version 4)
 #' 
@@ -126,17 +129,50 @@ ver4 <- function(n) {
   T_winning <- winning - 2*n
   return(T_winning)
 }
+ver4(10) # a game result using one of the "apply" functions
 
-ver1(3)
-ver1(3000)
-ver2(3)
-ver2(3000)
-ver3(3)
-ver3(3000)
-ver4(3)
-ver4(3000)
+# b. Demonstration that all versions work
+
+ver1(3)    # Version 1 with input 3
+ver1(3000)  # Version 1 with input 3,000
+ver2(3)    # Version 2 with input 3
+ver2(3000)  # Version 2 with input 3,000
+ver3(3)    # Version 3 with input 3
+ver3(3000)  # Version 3 with input 3,000
+ver4(3)   # Version 4 with input 3
+ver4(3000) # Version 4 with input 3,000
+
+# c. demonstration that all versions work
+?set.seed
+
+set.seed(3) # Control the randomization for input 3
+ver1(3)    # Version 1 with input 3
+set.seed(3) # Control the randomization for input 3
+ver2(3)    # Version 2 with input 3
+set.seed(3) # Control the randomization for input 3
+ver3(3)    # Version 3 with input 3
+set.seed(3) # Control the randomization for input 3
+ver4(3)   # Version 4 with input 3
+
+set.seed(3000) # Control the randomization for input 3,000
+ver1(3000)  # Version 1 with input 3,000
+set.seed(3000) # Control the randomization for input 3,000
+ver2(3000)  # Version 2 with input 3,000
+set.seed(3000) # Control the randomization for input 3,000
+ver3(3000)  # Version 3 with input 3,000
+set.seed(3000) # Control the randomization for input 3,000
+ver4(3000) # Version 4 with input 3,000
+
+#d. Demonstration of the speed of the 
 
 library(microbenchmark)
-microbenchmark(ver1(3), ver2(3), ver3(3), ver4(3))
-microbenchmark(ver1(3000), ver2(3000), ver3(3000), ver4(3000))
 
+# The speed with input 1,000
+microbenchmark(ver1(1000), ver2(1000), ver3(1000), ver4(1000))
+
+# The speed with input 100,000
+microbenchmark(ver1(100000), ver2(100000), ver3(100000), ver4(100000))
+
+#e. Decision on whether this game is fair or not
+
+# From "problem c" above, you can see that the total returns from large trials amount to 2,124. The total expected return for one trial of this game is calculated as 2/3(6*1/6 + 10*1/6 - 2). Because the player can expect a positive total income, this game is not fair.
