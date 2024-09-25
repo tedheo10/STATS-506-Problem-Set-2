@@ -35,15 +35,45 @@ cars <- cars[cars$highway_mpg <= 50, ] # restrict the data without the outlier
 cars$log_torque <- log(cars$torque) # add the transformation variable
 
 # d. Fit a linear regression model predicting MPG on the highway
+
 # There is negative linear relationshp between log(torque) and highway MPG
-# The estimated coefficients on torque for each year are as follows: 2009 = -13.88094, 2010 = -16.65208, 2011 = -16.67382, and 2012 = -18.52437.
+# The estimated coefficient for log_torque is -17.09. This means that a car with a log_torque that is 1 unit higher is expected to have a highway MPG that is 17.09 units lower than another car with the same height, length, width, horsepower and year, but a different log_torque.
+
+sum(cars$height == 0) # the number of unknown height values
+sum(cars$length == 0) # the number of unknown length values
+sum(cars$width == 0) # the number of unknown width values
+
 
 cars$year <- as.factor(cars$year) # transform year into a categorical variable
 table(cars$year)
 
-mod <- lm(highway_mpg~log_torque*year+height+length+width+hp, data = cars)
+# linear regression model predicting MPG on the highway
+mod <- lm(highway_mpg~log_torque+height+length+width+hp+year, data = cars)
 summary(mod)
 
-c("2009" = mod$coef[2], "2010" = mod$coef[2] + mod$coef[10], "2011" = mod$coef[2] + mod$coef[11], "2012" = mod$coef[2] + mod$coef[12])
+#mod1 <- lm(highway_mpg~log_torque*year+height+length+width+hp, data = cars)
+#summary(mod1)
+#anova(mod,mod1)
+#c("2009" = mod1$coef[2], "2010" = mod1$coef[2] + mod1$coef[10], "2011" = mod1$coef[2] + mod1$coef[11], "2012" = mod1$coef[2] + mod1$coef[12])
 
 
+# e. Refit the model with an interaction terms and generate a plot,
+
+# linear regression model with an interation between torque and horsepower
+mod1 <- lm(highway_mpg~log_torque*hp+height+length+width+year, data = cars)
+summary(mod1)
+
+table(year)
+summary(cars$hp)
+summary(cars$log_torque)
+
+library(interactions)
+interact_plot(mod1, pred = log_torque, modx = hp) # need more data to put
+
+# f. Calculate beta_hat from d. manually
+
+xmat <- model.matrix(mod, data = cars) # design matrix 
+beta_hat <- solve(t(xmat)%*%xmat)%*%t(xmat)%*%cars$highway_mpg # matrix algebra
+beta_hat # beta_hat result
+mod # result from lm function of d. 
+beta_hat - mod$coeff # the coefficients are same
