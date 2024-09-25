@@ -1,0 +1,14 @@
+---
+title: "Problem Set 2"
+author: "Taeyoung Heo (UMID # 29145801)"
+format: 
+  html: 
+    embed-resources: true
+editor: visual
+---
+
+## Problem Set 2
+
+```{r}
+1 + 1
+```
