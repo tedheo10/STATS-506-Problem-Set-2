@@ -250,7 +250,7 @@ plot(torque[highway_mpg <= 50], highway_mpg[highway_mpg <= 50], main = "The Rela
 
 => The relationship between MPG on highways and Torque is not linear. The MPG decreases exponentially with Torque. Therefore, a log transformation of Torque is helpful.
 
-<b>[plot with with logarithmic transformation on torque]</b>
+<b>[plot with logarithmic transformation on torque]</b>
 ```{r}
 plot(log(torque[highway_mpg <= 50]), highway_mpg[highway_mpg <= 50], main = "The Relationship between MPG on highway and Torque", xlab = "log(Torque)", ylab = "MPG on highway")
 

@@ -3239,11 +3239,11 @@ vertical-align: -.125em;
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ver1</span>(<span class="dv">3</span>)    <span class="co"># Version 1 with input 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 6</code></pre>
+<pre><code>[1] 0</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ver1</span>(<span class="dv">3000</span>)  <span class="co"># Version 1 with input 3,000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2462</code></pre>
+<pre><code>[1] 1778</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ver2</span>(<span class="dv">3</span>)    <span class="co"># Version 2 with input 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -3251,23 +3251,23 @@ vertical-align: -.125em;
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ver2</span>(<span class="dv">3000</span>)  <span class="co"># Version 2 with input 3,000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1908</code></pre>
+<pre><code>[1] 1894</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ver3</span>(<span class="dv">3</span>)    <span class="co"># Version 3 with input 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -6</code></pre>
+<pre><code>[1] 10</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ver3</span>(<span class="dv">3000</span>)  <span class="co"># Version 3 with input 3,000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1702</code></pre>
+<pre><code>[1] 2096</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ver4</span>(<span class="dv">3</span>)   <span class="co"># Version 4 with input 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -6</code></pre>
+<pre><code>[1] 10</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ver4</span>(<span class="dv">3000</span>) <span class="co"># Version 4 with input 3,000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2230</code></pre>
+<pre><code>[1] 2124</code></pre>
 </div>
 </div>
 <p><br><b>P1-c.</b> demonstration that all versions work</p>
@@ -3320,16 +3320,16 @@ vertical-align: -.125em;
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">microbenchmark</span>(<span class="fu">ver1</span>(<span class="dv">1000</span>), <span class="fu">ver2</span>(<span class="dv">1000</span>), <span class="fu">ver3</span>(<span class="dv">1000</span>), <span class="fu">ver4</span>(<span class="dv">1000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
-       expr      min        lq       mean    median        uq       max neval
- ver1(1000) 4371.919 5062.8405 5365.24367 5220.9525 5438.1500 11262.933   100
- ver2(1000)   42.516   50.5060   55.96951   54.7985   60.2325    94.189   100
- ver3(1000)  201.048  240.4570  274.71277  272.3925  306.7015   451.426   100
- ver4(1000)   72.948   91.1135  106.57387  104.8475  120.6400   154.184   100
+       expr      min        lq       mean    median       uq       max neval
+ ver1(1000) 4123.620 4231.4405 4685.91973 4299.2835 4740.488 12333.989   100
+ ver2(1000)   40.244   44.7800   50.43782   48.6100   52.192    96.042   100
+ ver3(1000)  182.427  193.6315  224.32916  220.4725  237.929   397.451   100
+ ver4(1000)   66.684   74.7640   87.64607   83.3325   93.353   202.034   100
  cld
- a  
-  b 
-   c
-  b </code></pre>
+  a 
+   b
+   b
+   b</code></pre>
 </div>
 </div>
 <p><b>[The speed with input 100,000]</b></p>
@@ -3338,10 +3338,10 @@ vertical-align: -.125em;
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
         expr        min         lq       mean     median         uq        max
- ver1(1e+05) 484.855635 512.961237 524.969476 520.012581 529.081420 634.433103
- ver2(1e+05)   3.476690   3.942159   4.376429   4.293065   4.754620   5.864623
- ver3(1e+05)   8.628643  10.653496  12.491212  11.314598  12.310553 107.744191
- ver4(1e+05)   4.119379   4.914626   5.478546   5.389998   6.003481   7.171912
+ ver1(1e+05) 435.907700 442.286006 453.466774 446.812387 453.942323 547.806680
+ ver2(1e+05)   3.347682   3.479754   3.855793   3.861356   4.091135   5.679828
+ ver3(1e+05)   7.866674   9.091455  10.995421  10.313184  10.715477 103.782948
+ ver4(1e+05)   3.933186   4.226795   4.893916   5.072137   5.239722   7.158956
  neval cld
    100 a  
    100  b 
@@ -3418,7 +3418,7 @@ vertical-align: -.125em;
 </div>
 </div>
 <p>=&gt; The relationship between MPG on highways and Torque is not linear. The MPG decreases exponentially with Torque. Therefore, a log transformation of Torque is helpful.</p>
-<p><b>[plot with with logarithmic transformation on torque]</b></p>
+<p><b>[plot with logarithmic transformation on torque]</b></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">log</span>(torque[highway_mpg <span class="sc">&lt;=</span> <span class="dv">50</span>]), highway_mpg[highway_mpg <span class="sc">&lt;=</span> <span class="dv">50</span>], <span class="at">main =</span> <span class="st">&quot;The Relationship between MPG on highway and Torque&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;log(Torque)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;MPG on highway&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
