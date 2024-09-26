@@ -4,7 +4,6 @@ author: "Taeyoung Heo (UMID # 29145801)"
 format: 
   html: 
     embed-resources: true
-editor: visual
 ---
 
 GitHub repository link : <a href="https://github.com/tedheo10/STATS-506-Problem-Set-2">https://github.com/tedheo10/STATS-506-Problem-Set-2</a>
@@ -12,11 +11,12 @@ GitHub repository link : <a href="https://github.com/tedheo10/STATS-506-Problem-
 ```{r}
 ```
 
+
 ## Problem 1 - Dice Game
 
+<b>P1-a.</b> Implementation of dice games
+<br><b>[Version 1]</b>
 ```{r}
-# a. Implementation of dice games
-
 #' Dice Game (Version 1)
 #' 
 #' This version uses a loop to get the result.
@@ -54,8 +54,10 @@ ver1 <- function(n) {
   }
   return(T_winning)
 }
-ver1(10) # a game result using a loop
+```
 
+<b>[Version 2]</b>
+```{r}
 #' Dice Game (Version 2)
 #' 
 #' This version uses builted-in R vectorized functions to get the result.
@@ -82,8 +84,10 @@ ver2 <- function(n) {
   T_winning <- winning - 2*n
   return(T_winning)
 }
-ver2(10) # a game result using built-in R vectorized function 
+```
 
+<b>[Version 3]</b>
+```{r}
 #' Dice Game (Version 3)
 #' 
 #' This version uses a table to get the result.
@@ -111,9 +115,10 @@ ver3 <- function(n) {
   T_winning <- winning - 2*n
   return(T_winning)
     }
-ver3(10) # a game result collapsing the dice rolls into a table
+```
 
-
+<b>[Version 4]</b>
+```{r}
 #' Dice Game (Version 4)
 #' 
 #' This version uses "apply" functioins to get the result.
@@ -145,56 +150,158 @@ ver4 <- function(n) {
   T_winning <- winning - 2*n
   return(T_winning)
 }
-ver4(10) # a game result using one of the "apply" functions
-
-# b. Demonstration that all versions work
-
-ver1(3)    # Version 1 with input 3
-ver1(3000)  # Version 1 with input 3,000
-ver2(3)    # Version 2 with input 3
-ver2(3000)  # Version 2 with input 3,000
-ver3(3)    # Version 3 with input 3
-ver3(3000)  # Version 3 with input 3,000
-ver4(3)   # Version 4 with input 3
-ver4(3000) # Version 4 with input 3,000
-
-# c. demonstration that all versions work
-?set.seed
-
-set.seed(3) # Control the randomization for input 3
-ver1(3)    # Version 1 with input 3
-set.seed(3) # Control the randomization for input 3
-ver2(3)    # Version 2 with input 3
-set.seed(3) # Control the randomization for input 3
-ver3(3)    # Version 3 with input 3
-set.seed(3) # Control the randomization for input 3
-ver4(3)   # Version 4 with input 3
-
-set.seed(3000) # Control the randomization for input 3,000
-ver1(3000)  # Version 1 with input 3,000
-set.seed(3000) # Control the randomization for input 3,000
-ver2(3000)  # Version 2 with input 3,000
-set.seed(3000) # Control the randomization for input 3,000
-ver3(3000)  # Version 3 with input 3,000
-set.seed(3000) # Control the randomization for input 3,000
-ver4(3000) # Version 4 with input 3,000
-
-#d. Demonstration of the speed of the 
-
-library(microbenchmark)
-
-# The speed with input 1,000
-microbenchmark(ver1(1000), ver2(1000), ver3(1000), ver4(1000))
-
-# The speed with input 100,000
-microbenchmark(ver1(100000), ver2(100000), ver3(100000), ver4(100000))
-
-#e. Decision on whether this game is fair or not
-
-# From "problem c" above, you can see that the total returns from large trials amount to 2,124. The total expected return for one trial of this game is calculated as 2/3(6*1/6 + 10*1/6 - 2). Because the player can expect a positive total income, this game is not fair.
-
 ```
 
-## Problem 2 - Linear Regression
+<br><b>P1-b.</b> Demonstration that all versions work
+
 ```{r}
+ver1(3)    # Version 1 with input 3
+ver1(3000)  # Version 1 with input 3,000
+ver2(3)    # Version 2 with input 3
+ver2(3000)  # Version 2 with input 3,000
+ver3(3)    # Version 3 with input 3
+ver3(3000)  # Version 3 with input 3,000
+ver4(3)   # Version 4 with input 3
+ver4(3000) # Version 4 with input 3,000
+```
+
+<br><b>P1-c.</b> demonstration that all versions work
+
+```{r}
+set.seed(3) # Control the randomization for input 3
+ver1(3)    # Version 1 with input 3
+set.seed(3) # Control the randomization for input 3
+ver2(3)    # Version 2 with input 3
+set.seed(3) # Control the randomization for input 3
+ver3(3)    # Version 3 with input 3
+set.seed(3) # Control the randomization for input 3
+ver4(3)   # Version 4 with input 3
+
+set.seed(3000) # Control the randomization for input 3,000
+ver1(3000)  # Version 1 with input 3,000
+set.seed(3000) # Control the randomization for input 3,000
+ver2(3000)  # Version 2 with input 3,000
+set.seed(3000) # Control the randomization for input 3,000
+ver3(3000)  # Version 3 with input 3,000
+set.seed(3000) # Control the randomization for input 3,000
+ver4(3000) # Version 4 with input 3,000
+```
+
+<br><b>P1-d.</b> Demonstration of the speed of the implementations
+
+<b>[The speed with input 1,000]</b>
+```{r}
+library(microbenchmark)
+microbenchmark(ver1(1000), ver2(1000), ver3(1000), ver4(1000))
+```
+
+<b>[The speed with input 100,000]</b>
+```{r}
+microbenchmark(ver1(100000), ver2(100000), ver3(100000), ver4(100000))
+```
+
+<br><b>P1-e.</b> Decision on whether this game is fair or not<br>
+
+From "problem c" above, you can see that the total returns from large trials amount to 2,124. The total expected return for one trial of this game is calculated as 2/3(6x1/6 + 10x1/6 - 2). Because the player can expect a positive total income, this game is not fair.
+
+```{r}
+```
+
+
+## Problem 2 - Linear Regression
+
+<b>P2-a.</b> rename the columns of the data ("cars.csv")
+
+```{r}
+cars <- read.csv("cars.csv")
+
+#rename the column to more reasonable length 
+colnames(cars) <- c("height", "length", "width", "wheeldrive", "cylinder", "hybrid",                      "gears", "transmission_full", "city_mpg", "fuel", "highway_mpg",                      "transmission_class", "id", "maker", "model_year", "year", "hp",                      "torque")    
+colnames(cars) 
+nrow(cars) # the number of the original data
+```
+
+<br><b>P2-b.</b> Restrict the data to cars whose Fuel Type is “Gasoline”.
+
+```{r}
+cars <- cars[cars$fuel == "Gasoline", ] # restrict the data to cars with "Gasoline"
+nrow(cars) # the number of the retricted data
+```
+
+<br><b>P2-c.</b> Examine the distribution of highway gas mileage
+
+<b>[plot between MPG on highway and Torque]</b>
+```{r}
+attach(cars) 
+plot(torque, highway_mpg, main = "The Relationship between MPG on highways and Torque", xlab = "Torque", ylab = "MPG on highways")
+
+# Check the number of outlier whose highway_mpg is greater than 50
+sum(highway_mpg > 50)
+highway_mpg[highway_mpg > 50]
+cars <- cars[cars$highway_mpg <= 50, ] # remove the outlier
+```
+
+=> Because there is only one car whose highway_mpg is greater than 50 as 223 MPG, restric the data to cars whose highway_mpg is leass than 50.
+
+<br><b>[plot without transformation]</b>
+```{r}
+plot(torque[highway_mpg <= 50], highway_mpg[highway_mpg <= 50], main = "The Relationship between MPG on highways and Torque", xlab = "Torque", ylab = "MPG on highways")
+```
+
+=> The relationship between MPG on highways and Torque is not linear. The MPG decreases exponentially with Torque. Therefore, a log transformation of Torque is helpful.
+
+<b>[plot with with logarithmic transformation on torque]</b>
+```{r}
+plot(log(torque[highway_mpg <= 50]), highway_mpg[highway_mpg <= 50], main = "The Relationship between MPG on highway and Torque", xlab = "log(Torque)", ylab = "MPG on highway")
+
+cars$log_torque <- log(cars$torque) # add the transformation variable
+```
+
+<br><b>P2-d.</b> Fit a linear regression model predicting MPG on the highway
+
+- There is negative linear relationshp between log(torque) and highway MPG
+
+- The estimated coefficient for log_torque is -17.09. This means that a car with a log_torque that is 1 unit higher is expected to have a highway MPG that is 17.09 units lower than another car with the same height, length, width, horsepower and year, but a different log_torque.
+
+```{r}
+n1 <- sum(cars$height == 0) # the number of unknown height values
+n2 <- sum(cars$length == 0) # the number of unknown length values
+n3 <- sum(cars$width == 0) # the number of unknown width values
+c(n1, n2, n3)
+
+cars$year <- as.factor(cars$year) # transform year into a categorical variable
+
+# linear regression model predicting MPG on the highway
+mod <- lm(highway_mpg~log_torque+height+length+width+hp+year, data = cars)
+summary(mod)
+```
+
+<br><b>P2-e.</b> Refit the model with an interaction terms and generate a plot,
+
+<b>[linear regression model with an interation between torque and horsepower]</b>
+```{r}
+mod1 <- lm(highway_mpg~log_torque*hp+height+length+width+year, data = cars)
+summary(mod1)
+
+table(year) # the number of 2011 is the largest among years. 
+summary(cars$hp) # the distribution of horsepower (the mean of horsepower : 267.5)
+sd(cars$hp) # the standard error of horsepwoer (97.43795)
+summary(cars$log_torque) # the distribution of log_torque (min : 4.585, max: 6.652)
+```
+
+<b>[interaction plot for the year 2011]</b>
+```{r}
+library(interactions)
+interact_plot(mod1, pred = log_torque, modx = hp, at = list(year = "2011")) 
+```
+
+=> The highway MPG decreases less with larger log_torque as the horsepower increases, for log_torque values between 4.585 and 6.652. 
+
+<br><b>P2-f.</b> Calculate beta_hat from d. manually
+
+```{r}
+xmat <- model.matrix(mod, data = cars) # design matrix 
+beta_hat <- solve(t(xmat)%*%xmat)%*%t(xmat)%*%cars$highway_mpg # matrix algebra
+beta_hat # beta_hat result
+mod # result from lm function of d. 
 ```

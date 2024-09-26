@@ -66,12 +66,14 @@ summary(mod1)
 table(year) # the number of 2011 is the largest among years. 
 summary(cars$hp) # the distribution of horsepower (the mean of horsepower : 267.5)
 sd(cars$hp) # the standard error of horsepwoer (97.43795)
+summary(cars$log_torque) # the distribution of log_torque (min : 4.585, max: 6.652)
+hist(cars$log_torque) # the histogram of log_torque
 
 library(interactions)
 # interaction plot for the year 2011
 interact_plot(mod1, pred = log_torque, modx = hp, at = list(year = "2011")) 
 
-# The highway MPG decreases less with the larger log_torque as the horsepower increases. 
+# The highway MPG decreases less with larger log_torque as the horsepower increases, for log_torque values between 4.585 and 6.652. 
 
 # f. Calculate beta_hat from d. manually
 
